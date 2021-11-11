@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TRAMBOMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CHCLORINEINJECTIONS">
+    <Key>
+      <PropertyRef Name="CHCLORINEINJECTIONSID" />
+    </Key>
+    <Property Name="CHCLORINEINJECTIONSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SYSTEMSSTATIONID" Type="int" />
+    <Property Name="EMPLOYEENAME" Type="nvarchar(max)" />
+    <Property Name="INJECTIONTIME" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STATIONS">
+    <Key>
+      <PropertyRef Name="STATIONID" />
+    </Key>
+    <Property Name="STATIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STATIONNAME" Type="nvarchar(max)" />
+    <Property Name="STATIONADDRESS" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="SYSTEMSSTATIONS">
+    <Key>
+      <PropertyRef Name="SYSTEMSSTATIONID" />
+    </Key>
+    <Property Name="SYSTEMSSTATIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STATIONID" Type="int" />
+    <Property Name="STATIONNAME" Type="nvarchar(max)" />
+    <Property Name="STATIONADDRESS" Type="nvarchar(max)" />
+    <Property Name="WATERLEVEL" Type="nvarchar(max)" />
+    <Property Name="WATERPRESSURE" Type="nvarchar(max)" />
+    <Property Name="ChlorineConcentration" Type="int" />
+  </EntityType>
+  <Association Name="FK__CHCLORINE__INJEC__44FF419A">
+    <End Role="SYSTEMSSTATIONS" Type="Self.SYSTEMSSTATIONS" Multiplicity="0..1" />
+    <End Role="CHCLORINEINJECTIONS" Type="Self.CHCLORINEINJECTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SYSTEMSSTATIONS">
+        <PropertyRef Name="SYSTEMSSTATIONID" />
+      </Principal>
+      <Dependent Role="CHCLORINEINJECTIONS">
+        <PropertyRef Name="SYSTEMSSTATIONID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SYSTEMSST__STATI__4222D4EF">
+    <End Role="STATIONS" Type="Self.STATIONS" Multiplicity="0..1" />
+    <End Role="SYSTEMSSTATIONS" Type="Self.SYSTEMSSTATIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STATIONS">
+        <PropertyRef Name="STATIONID" />
+      </Principal>
+      <Dependent Role="SYSTEMSSTATIONS">
+        <PropertyRef Name="STATIONID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TRAMBOMModelStoreContainer">
+    <EntitySet Name="CHCLORINEINJECTIONS" EntityType="Self.CHCLORINEINJECTIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STATIONS" EntityType="Self.STATIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYSTEMSSTATIONS" EntityType="Self.SYSTEMSSTATIONS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CHCLORINE__INJEC__44FF419A" Association="Self.FK__CHCLORINE__INJEC__44FF419A">
+      <End Role="SYSTEMSSTATIONS" EntitySet="SYSTEMSSTATIONS" />
+      <End Role="CHCLORINEINJECTIONS" EntitySet="CHCLORINEINJECTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SYSTEMSST__STATI__4222D4EF" Association="Self.FK__SYSTEMSST__STATI__4222D4EF">
+      <End Role="STATIONS" EntitySet="STATIONS" />
+      <End Role="SYSTEMSSTATIONS" EntitySet="SYSTEMSSTATIONS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

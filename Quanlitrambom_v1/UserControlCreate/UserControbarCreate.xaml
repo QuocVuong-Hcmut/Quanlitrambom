@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Quanlitrambom_v1.UserControlCreate.UserControbarCreate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Quanlitrambom_v1.UserControlCreate"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            Height="34" Width="1000"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="Transparent"
+             x:Name="usctrl"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             
+        >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding DragMouseCommand}" CommandParameter="{Binding ElementName=usctrl}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Height="34" VerticalAlignment="Top">
+
+    <materialDesign:ColorZone VerticalAlignment="Top" Mode="PrimaryLight" Background="#FF8B8BA9">
+            <DockPanel>
+                <StackPanel  DockPanel.Dock="Right" Orientation="Horizontal"  Background="#FF8B8BA9"  >
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="2 4"></Setter>
+                            <Setter Property="Width" Value="35"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                <Button Command="{Binding MinWindownCommand}" CommandParameter="{Binding ElementName=usctrl}"  ToolTip="Thu nhỏ" ToolBar.OverflowMode="AsNeeded" Background="#FFB39DDB">
+                        <materialDesign:PackIcon     Kind="WindowMinimize" />
+                    </Button>
+                <Button  Command="{Binding MaxWindownCommand}" CommandParameter="{Binding ElementName=usctrl}" ToolTip="Phóng to" ToolBar.OverflowMode="AsNeeded" Background="#FFB39DDB">
+                        <materialDesign:PackIcon     Kind="WindowMaximize" />
+                    </Button>
+                <Button Command="{Binding CloseWindownCommand}"  CommandParameter="{Binding ElementName=usctrl}"  ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="#FFB05E91">
+                        <materialDesign:PackIcon Kind="WindowClose" />
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"  DockPanel.Dock="Left">
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock  VerticalAlignment="Center" Margin="16 0 0 0" Text="{Binding Tag, ElementName=usctrl}"/>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,87 @@
+﻿<Window x:Class="Quanlitrambom_v1.LoginSecond"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quanlitrambom_v1"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+
+        xmlns:ctr="clr-namespace:Quanlitrambom_v1.UserControlCreate"
+        mc:Ignorable="d"
+        Title="Login" Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#332B2828"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        DataContext="{StaticResource LoginSencond}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Name="LoginSc"
+        >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadWindowCommand}" CommandParameter="{Binding ElementName=LoginSc}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid Width="450" Height="250" >
+                <materialDesign:Card UniformCornerRadius="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBox Text="{Binding UserName}" FontSize="26" Margin="30 5 5 5" materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <PasswordBox FontSize="26" Margin="30 5 5 5" x:Name="FloatingPasswordBox" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
+
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Button Command="{Binding ButtonCommand}" CommandParameter="{Binding ElementName=LoginSc}" Width="130" Margin="17 5 5 5"  FontSize="26" Height="40" Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Background="#FF093095">
+                                    Login
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Button Command="{Binding ButtonExitCommand}" CommandParameter="{Binding ElementName=LoginSc}" Width="130" Margin="5 5 17 5" FontSize="26" Height="40" Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Background="#FF093095">
+                                    Exit
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+
+
+    </Grid>
+</Window>
